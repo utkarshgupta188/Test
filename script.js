@@ -1,7 +1,7 @@
 const subjects = {
     notes: {
         "Mathematics": [
-            { title: "Algebra Notes", link: "path/to/algebra_notes.pdf" },
+            { title: "Algebra Notes", link: "ECLS1stexp_1.pdf" },
             { title: "Calculus Notes", link: "path/to/calculus_notes.pdf" }
         ],
         "Physics": [
