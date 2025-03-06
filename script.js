@@ -24,4 +24,61 @@ const subjects = {
         ],
         "Chemistry": [
             { title: "Titration Practical", link: "path/to/titration_practical.pdf" },
-            { title: "Chromat
+            { title: "Chromatography Practical", link: "path/to/chromatography_practical.pdf" }
+        ]
+    },
+    assignments: {
+        "Mathematics": [
+            { title: "Assignment 1", link: "path/to/assignment1.pdf" },
+            { title: "Assignment 2", link: "path/to/assignment2.pdf" }
+        ],
+        "Physics": [
+            { title: "Assignment 1", link: "path/to/assignment1_physics.pdf" },
+            { title: "Assignment 2", link: "path/to/assignment2_physics.pdf" }
+        ],
+        "Chemistry": [
+            { title: "Assignment 1", link: "path/to/assignment1_chemistry.pdf" },
+            { title: "Assignment 2", link: "path/to/assignment2_chemistry.pdf" }
+        ]
+    }
+};
+
+function showSection(section) {
+    const subjectList = document.getElementById('subject-list');
+    subjectList.innerHTML = ''; // Clear previous subjects
+    const subjectSelection = document.getElementById('subject-selection');
+    const pdfViewer = document.getElementById('pdf-viewer');
+    const pdfFrame = document.getElementById('pdf-frame');
+
+    // Show subject selection
+    subjectSelection.classList.remove('hidden');
+    pdfViewer.classList.add('hidden');
+
+    // Populate subjects based on the selected section
+    const subjectsInSection = subjects[section];
+    for (const subject in subjectsInSection) {
+        const li = document.createElement('li');
+        li.innerText = subject;
+        li.onclick = () => showPDFs(section, subject);
+        subjectList.appendChild(li);
+    }
+}
+
+function showPDFs(section, subject) {
+    const pdfList = subjects[section][subject];
+    const subjectSelection = document.getElementById('subject-selection');
+    const pdfViewer = document.getElementById('pdf-viewer');
+    const pdfFrame = document.getElementById('pdf-frame');
+
+    // Hide subject selection and show PDF viewer
+    subjectSelection.classList.add('hidden');
+    pdfViewer.classList.remove('hidden');
+
+    // Display the first PDF by default
+    if (pdfList.length > 0) {
+        pdfFrame.src = pdfList[0].link; // Load the first PDF
+    }
+
+    // Optional: You can add a dropdown or list to select different PDFs if needed
+    // For now, it just loads the first PDF of the selected subject
+}
