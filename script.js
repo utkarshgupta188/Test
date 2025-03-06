@@ -1,3 +1,4 @@
+
 const subjects = {
     notes: {
         "Mathematics": [
@@ -69,16 +70,27 @@ function showPDFs(section, subject) {
     const subjectSelection = document.getElementById('subject-selection');
     const pdfViewer = document.getElementById('pdf-viewer');
     const pdfFrame = document.getElementById('pdf-frame');
+    const subjectList = document.getElementById('subject-list');
 
     // Hide subject selection and show PDF viewer
     subjectSelection.classList.add('hidden');
     pdfViewer.classList.remove('hidden');
 
-    // Display the first PDF by default
+    // Clear previous items in the subject list
+    subjectList.innerHTML = '';
+
+    // Populate the PDF list for the selected subject
+    pdfList.forEach(item => {
+        const li = document.createElement('li');
+        li.innerText = item.title;
+        li.onclick = () => {
+            pdfFrame.src = item.link; // Load the selected PDF
+        };
+        subjectList.appendChild(li);
+    });
+
+    // Load the first PDF by default if available
     if (pdfList.length > 0) {
         pdfFrame.src = pdfList[0].link; // Load the first PDF
     }
-
-    // Optional: You can add a dropdown or list to select different PDFs if needed
-    // For now, it just loads the first PDF of the selected subject
 }
